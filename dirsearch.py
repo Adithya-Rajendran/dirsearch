@@ -8,7 +8,7 @@ def load_wordlist(wordlist_path):
     return wordlist
 
 
-def search_directory(url, word, status_filter=None, min_word_length=None, max_word_length=None, min_response_length=None, max_response_length=None):
+def search_directory(url, word, status_filter=None, min_response_length=None, max_response_length=None):
     full_url = f"{url}/{word}"
     response = requests.get(full_url)
 
