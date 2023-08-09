@@ -28,6 +28,7 @@ def main():
     parser.add_argument("-w", "--wordlist", help="Path to the wordlist file", required=True)
     parser.add_argument("-u", "--url", help="URL to perform directory search on", required=True)
     parser.add_argument("--status-filter", type=int, nargs="+", help="Filter URLs by specific status codes (multiple codes seperated by spaces)")
+    parser.add_argument("--max-threads", type=int, default=40, help="Maximum number of threads")
     parser.add_argument("--min-response-length", type=int, help="Minimum length of response content")
     parser.add_argument("--max-response-length", type=int, help="Maximum length of response content")
     args = parser.parse_args()
@@ -35,7 +36,7 @@ def main():
     wordlist = load_wordlist(args.wordlist)
 
     # Multithreaded to add concurrency
-    with concurrent.futures.ThreadPoolExecutor() as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=args.max_threads) as executor:
         # Using the map function to link each word to the filters
         executor.map(search_directory, 
                      [args.url] * len(wordlist), 

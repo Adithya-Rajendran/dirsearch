@@ -42,6 +42,7 @@ Replace /path/to/wordlist with the actual path to your wordlist file on your hos
 - `-w`, `--wordlist`: Path to the wordlist file (required).
 - `-u`, `--url`: URL to perform the directory search on (required).
 - `--status-filter`: Filter URLs by specific status codes (optional).
+- `--max-threads`: Sets the maximum number of threads (default 40) (optional).
 - `--min-response-length`: Minimum length of response content (optional).
 - `--max-response-length`: Maximum length of response content (optional).
 
