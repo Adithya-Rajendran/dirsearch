@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir argparse requests
+RUN pip install -r requirements.txt
 
 # Make main.py executable
 RUN chmod +x dirsearch.py
