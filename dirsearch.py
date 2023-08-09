@@ -15,10 +15,6 @@ def search_directory(url, word, status_filter=None, min_word_length=None, max_wo
     # Skip the print statement if the filter fails
     if status_filter and response.status_code not in status_filter:
         return
-    if min_word_length and len(word) < min_word_length:
-        return
-    if max_word_length and len(word) > max_word_length:
-        return
     if min_response_length and len(response.text) < min_response_length:
         return
     if max_response_length and len(response.text) > max_response_length:
@@ -32,8 +28,6 @@ def main():
     parser.add_argument("-w", "--wordlist", help="Path to the wordlist file", required=True)
     parser.add_argument("-u", "--url", help="URL to perform directory search on", required=True)
     parser.add_argument("--status-filter", type=int, nargs="+", help="Filter URLs by specific status codes (multiple codes seperated by spaces)")
-    parser.add_argument("--min-word-length", type=int, help="Minimum length of words to search for")
-    parser.add_argument("--max-word-length", type=int, help="Maximum length of words to search for")
     parser.add_argument("--min-response-length", type=int, help="Minimum length of response content")
     parser.add_argument("--max-response-length", type=int, help="Maximum length of response content")
     args = parser.parse_args()
@@ -47,8 +41,6 @@ def main():
                      [args.url] * len(wordlist), 
                      wordlist, 
                      [args.status_filter] * len(wordlist), 
-                     [args.min_word_length] * len(wordlist),
-                     [args.max_word_length] * len(wordlist),
                      [args.min_response_length] * len(wordlist),
                      [args.max_response_length] * len(wordlist))
 
