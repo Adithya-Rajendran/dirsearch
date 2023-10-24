@@ -3,7 +3,7 @@ import requests
 import concurrent.futures
 
 def load_wordlist(wordlist_path):
-    with open(wordlist_path, 'r') as file:
+    with open(wordlist_path, 'r', encoding='iso-8859-1') as file:
         wordlist = [line.strip() for line in file]
     return wordlist
 
@@ -33,6 +33,7 @@ def main():
     parser.add_argument("--max-response-length", type=int, help="Maximum length of response content")
     args = parser.parse_args()
 
+    print(args.wordlist)
     wordlist = load_wordlist(args.wordlist)
 
     # Multithreaded to add concurrency
