@@ -14,4 +14,4 @@ RUN pip3 install -r requirements.txt
 RUN chmod +x dirsearch.py
 
 # Run the command when the container launches
-ENTRYPOINT ["/usr/local/bin/python","/app/dirsearch.py"]
+ENTRYPOINT ["/usr/local/bin/python3","/app/dirsearch.py"]
